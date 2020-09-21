@@ -8,17 +8,15 @@ export class NvidiaDe implements CrawlerInterface {
   private products: Product[] = [
     {
       name: 'nVidia GeForce RTX 3080 FE',
-      url: 'https://www.nvidia.com/de-de/geforce/graphics-cards/30-series/rtx-3080/'
+      url: 'https://www.nvidia.com/de-de/geforce/graphics-cards/30-series/rtx-3080/',
+      retailer: 'nVidia Shop DE'
     },
     {
       name: 'nVidia GeForce RTX 3080 FE',
-      url: 'https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3080/'
+      url: 'https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3080/',
+      retailer: 'nVidia Shop US'
     },
   ];
-
-  getRetailerName(): string {
-    return 'nVidia Shop DE';
-  }
 
   async acquireStock(logger: Logger) {
     const products: Product[] = [];
@@ -29,9 +27,8 @@ export class NvidiaDe implements CrawlerInterface {
           continue;
         }
         const $          = cheerio.load(response.data);
-        product.retailer = this.getRetailerName();
         product.stock    = $('.oos-btn').first().text().trim();
-        logger.debug(`Acquired stock from ${this.getRetailerName()}`, product);
+        logger.debug(`Acquired stock from ${product.retailer}`, product);
         products.push(product);
       } catch (e) {
         logger.error(e.message, { url: product.url });
