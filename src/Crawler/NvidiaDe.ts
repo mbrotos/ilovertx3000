@@ -10,6 +10,10 @@ export class NvidiaDe implements CrawlerInterface {
       name: 'nVidia GeForce RTX 3080 FE',
       url: 'https://www.nvidia.com/de-de/geforce/graphics-cards/30-series/rtx-3080/'
     },
+    {
+      name: 'nVidia GeForce RTX 3080 FE',
+      url: 'https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3080/'
+    },
   ];
 
   getRetailerName(): string {
